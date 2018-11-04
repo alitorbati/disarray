@@ -5,12 +5,11 @@ var config = {
   stringToPrint: '',
   showBoxes: false,
   fontMultiplier: 1,
-  // fontName: 'Space Mono',
-  fontName: 'Dublab',
+  fontName: 'Space Mono',
   textStyle: 'stroke', // or 'stroke' or 'fill'
 }
 
-doEverything(config);
+// doEverything(config);
 
 var input = form.querySelector('input[name="stringToPrint"]')
 input.addEventListener('keyup', (e) => {
