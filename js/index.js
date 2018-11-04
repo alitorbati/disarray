@@ -9,13 +9,13 @@ var config = {
 }
 
 var input = form.querySelector('input[name="stringToPrint"]')
-input.addEventListener('keyup', (e) => { 
+input.addEventListener('keyup', (e) => {
   config.stringToPrint = e.target.value,
   doEverything(config);
 })
 
 var select = form.querySelector('select[name="textStyle"]')
-select.addEventListener('change', (e) => { 
+select.addEventListener('change', (e) => {
   console.log(e.target.value)
   config.textStyle = e.target.value,
   doEverything(config);
@@ -24,7 +24,6 @@ select.addEventListener('change', (e) => {
 function doEverything (config) {
   var canvas = document.querySelector('canvas');
   var context = canvas.getContext('2d');
-  var dpr = window.devicePixelRatio;
 
   const {
     stringToPrint,
@@ -34,13 +33,11 @@ function doEverything (config) {
     textStyle,
   } = config
 
-  const canvasWidth = 240 * dpr * 2;
-  const canvasHeight = 360 * dpr * 2;
+  const canvasWidth = 240 * 2;
+  const canvasHeight = 360 * 2;
   const offset = canvasWidth / 20;
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
-  context.scale(dpr, dpr);
-  // context.lineWidth = 0;
 
   var randomDisplacement = 15;
   var rotateMultiplier = 10;
@@ -73,7 +70,7 @@ function doEverything (config) {
 
       context.save();
       context.translate(
-        horizontalPlacement + translateAmt + (squareSize / 2) + offset, 
+        horizontalPlacement + translateAmt + (squareSize / 2) + offset,
         verticalPlacement + (squareSize / 2) + offset
       );
       context.rotate(rotateAmt);
@@ -82,5 +79,5 @@ function doEverything (config) {
       overall++
     }
   }
-  
+
 }
