@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Dublab;
+  src: url(../fonts/Dublab70-1.woff);
+}
+
 body {
   display: flex;
   height: 100vh;
@@ -5,6 +10,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  font-family: 'Dublab';
 }
 
 canvas {

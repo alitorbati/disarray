@@ -1,12 +1,16 @@
 var form = document.forms[0]
 
 var config = {
+  // stringToPrint: 'disarray',
   stringToPrint: '',
   showBoxes: false,
   fontMultiplier: 1,
-  fontName: 'Space Mono',
+  // fontName: 'Space Mono',
+  fontName: 'Dublab',
   textStyle: 'stroke', // or 'stroke' or 'fill'
 }
+
+doEverything(config);
 
 var input = form.querySelector('input[name="stringToPrint"]')
 input.addEventListener('keyup', (e) => {
