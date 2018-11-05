@@ -13,9 +13,16 @@ function setConfigValue (input) {
 function initConfig () {
   const inputs = form.querySelectorAll('input')
   inputs.forEach(input => { setConfigValue(input) })
-  document.querySelector('button').addEventListener('click', (_) => {
+  document.querySelector('button[name="refuck"]').addEventListener('click', (_) => {
     renderCanvas(canvas, ctx, config)
   })
+
+  var downloadRaster = document.querySelector('a[name="download-raster"]')
+  downloadRaster.addEventListener('click', (_) => {
+    downloadRaster.href = canvas.toDataURL('image/png')
+    downloadRaster.download = 'disarray.png';
+  })
+
   renderCanvas(canvas, ctx, config)
 }
 
@@ -46,11 +53,16 @@ function renderCanvas (canvas, ctx, config) {
   const canvasWidth = 480
   const canvasHeight = 720
   const offset = canvasWidth / 20 // maintains ratio
+
   canvas.width = canvasWidth
   canvas.height = canvasHeight
-  negative ? canvas.classList.add('negative') : canvas.classList.remove('negative')
-  // ctx.scale(dpr, dpr)
   ctx.scale(dpr, dpr)
+
+  let foregroundColor = negative ? 'white' : 'black'
+  let backgroundColor = negative ? 'black' : 'white'
+
+  ctx.fillStyle = backgroundColor;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const squaresAcross = stringToPrint.length
   const squareSize = ((canvasWidth / dpr) - (offset * 2)) / squaresAcross
@@ -75,8 +87,9 @@ function renderCanvas (canvas, ctx, config) {
       // draw
       ctx.beginPath()
       ctx.rect(-squareSize/2, -squareSize/2, squareSize, squareSize)
-      ctx.fillStyle = (negative ? 'white' : 'black')
-      ctx.strokeStyle = (negative ? 'white' : 'black')
+
+      ctx.fillStyle = foregroundColor
+      ctx.strokeStyle = foregroundColor
       showBoxes && ctx.stroke()
       ctx.font = `${squareSize * fontMultiplier}px ${fontName || 'Courier'}`
       ctx.textBaseline = 'middle'
