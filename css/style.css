@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   height: 100vh;
@@ -15,14 +21,12 @@ canvas {
 }
 
 .form {
-  /* border: 1px solid black; */
   padding: 20px;
   position: fixed;
-  top: 20px;
-  left: 20px;
-  /* background: white; */
+  top: 0;
+  left: 0;
   filter: blur(10px);
-  max-height: 100vh;
+  height: 100vh;
   overflow: scroll;
 }
 
