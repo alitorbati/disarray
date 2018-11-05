@@ -27,6 +27,7 @@ select.addEventListener('change', (e) => {
 function doEverything (config) {
   var canvas = document.querySelector('canvas');
   var context = canvas.getContext('2d');
+  var dpr = window.devicePixelRatio;
 
   const {
     stringToPrint,
@@ -36,11 +37,12 @@ function doEverything (config) {
     textStyle,
   } = config
 
-  const canvasWidth = 240 * 2;
-  const canvasHeight = 360 * 2;
+  const canvasWidth = 240 * dpr * 2;
+  const canvasHeight = 360 * dpr * 2;
   const offset = canvasWidth / 20;
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
+  context.scale(dpr, dpr);
 
   var randomDisplacement = 15;
   var rotateMultiplier = 10;
