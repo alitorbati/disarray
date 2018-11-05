@@ -4,10 +4,12 @@ const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
 function setConfigValue (input) {
-  if (input.type === 'checkbox') { value = input.checked }
-  else if (input.type === 'text') { value = input.value }
-  else if (input.checked) { value = input.value }
-  config[input.name] = value
+  // make this functional
+  formData = new FormData(form)
+  const formDataItems = [...formData.entries()]
+  formDataItems.forEach(formDataItem => {
+    config[formDataItem[0]] = formDataItem[1]
+  })
 }
 
 function initConfig () {
@@ -76,7 +78,7 @@ function renderCanvas (canvas, ctx, config) {
       plusOrMinus = Math.random() < 0.5 ? -1 : 1
       const horizontalPlacement = i * squareSize
       const verticalPlacement = j * squareSize
-      const translateAmt = j / squareSize * plusOrMinus * Math.random() * displacement
+      const translateAmt = j / squareSize * plusOrMinus * Math.random() * (displacement * 10)
 
       ctx.save()
       ctx.translate(
