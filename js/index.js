@@ -37,8 +37,8 @@ function doEverything (config) {
     textStyle,
   } = config
 
-  const canvasWidth = 240 * dpr;
-  const canvasHeight = 360 * dpr;
+  const canvasWidth = 240 * dpr * 2;
+  const canvasHeight = 360 * dpr * 2;
   const offset = canvasWidth / 20;
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
