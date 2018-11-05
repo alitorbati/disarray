@@ -1,7 +1,7 @@
-var form = document.forms[0]
-var config = {}
-var canvas = document.querySelector('canvas')
-var context = canvas.getContext('2d')
+const form = document.forms[0]
+const config = {}
+const canvas = document.querySelector('canvas')
+const ctx = canvas.getContext('2d')
 
 function setConfigValue (input) {
   if (input.type === 'checkbox') { value = input.checked }
@@ -11,24 +11,26 @@ function setConfigValue (input) {
 }
 
 function initConfig () {
-  var inputs = form.querySelectorAll('input')
+  const inputs = form.querySelectorAll('input')
   inputs.forEach(input => { setConfigValue(input) })
-  renderCanvas(canvas, context, config)
+  document.querySelector('button').addEventListener('click', (_) => {
+    renderCanvas(canvas, ctx, config)
+  })
+  renderCanvas(canvas, ctx, config)
 }
 
 initConfig()
 
-var inputs = form.querySelectorAll('input')
+const inputs = form.querySelectorAll('input')
 inputs.forEach(input => {
   input.addEventListener('input', (e) => {
     setConfigValue(e.target)
-    renderCanvas(canvas, context, config)
+    renderCanvas(canvas, ctx, config)
   })
 })
 
-function renderCanvas (canvas, context, config) {
-  // var dpr = window.devicePixelRatio
-  var dpr = 1 // work on this
+function renderCanvas (canvas, ctx, config) {
+  var dpr = window.devicePixelRatio || 1
 
   const {
     stringToPrint,
@@ -41,46 +43,46 @@ function renderCanvas (canvas, context, config) {
     negative,
   } = config
 
-  const canvasWidth = 240 * dpr * 2
-  const canvasHeight = 360 * dpr * 2
+  const canvasWidth = 480
+  const canvasHeight = 720
   const offset = canvasWidth / 20 // maintains ratio
   canvas.width = canvasWidth
   canvas.height = canvasHeight
   negative ? canvas.classList.add('negative') : canvas.classList.remove('negative')
-  context.scale(dpr, dpr)
+  // ctx.scale(dpr, dpr)
+  ctx.scale(dpr, dpr)
 
-  var squaresAcross = stringToPrint.length
-  var squaresDown = 5
-  var squareSize = (canvasWidth - offset * 2) / squaresAcross
-  var squaresDown = Math.floor((canvasHeight - (offset * 2))/ squareSize)
+  const squaresAcross = stringToPrint.length
+  const squareSize = ((canvasWidth / dpr) - (offset * 2)) / squaresAcross
+  const squaresDown = Math.floor((canvasHeight - (offset * 2))/ squareSize)
 
   for(var i = 0; i < squaresAcross; i++) {
     for(var j = 0; j < squaresDown; j++) {
-      var plusOrMinus = Math.random() < 0.5 ? -1 : 1
-      var rotateAmt = j * Math.PI / 180 * plusOrMinus * Math.random() * rotation
+      let plusOrMinus = Math.random() < 0.5 ? -1 : 1
+      const rotateAmt = j * Math.PI / 180 * plusOrMinus * Math.random() * rotation
 
       plusOrMinus = Math.random() < 0.5 ? -1 : 1
-      var horizontalPlacement = i * squareSize
-      var verticalPlacement = j * squareSize
-      var translateAmt = j / squareSize * plusOrMinus * Math.random() * displacement
+      const horizontalPlacement = i * squareSize
+      const verticalPlacement = j * squareSize
+      const translateAmt = j / squareSize * plusOrMinus * Math.random() * displacement
 
-      context.save()
-      context.translate(
+      ctx.save()
+      ctx.translate(
         horizontalPlacement + translateAmt + (squareSize / 2) + offset,
         verticalPlacement + (squareSize / 2) + offset
       )
-      context.rotate(rotateAmt)
+      ctx.rotate(rotateAmt)
       // draw
-      context.beginPath()
-      context.rect(-squareSize/2, -squareSize/2, squareSize, squareSize)
-      context.fillStyle = (negative ? 'white' : 'black')
-      context.strokeStyle = (negative ? 'white' : 'black')
-      showBoxes && context.stroke()
-      context.font = `${squareSize * fontMultiplier}px ${fontName || 'Courier'}`
-      context.textBaseline = 'middle'
-      context.textAlign = 'center'
-      context[`${textStyle}Text`](stringToPrint[i], 0, 0)
-      context.restore()
+      ctx.beginPath()
+      ctx.rect(-squareSize/2, -squareSize/2, squareSize, squareSize)
+      ctx.fillStyle = (negative ? 'white' : 'black')
+      ctx.strokeStyle = (negative ? 'white' : 'black')
+      showBoxes && ctx.stroke()
+      ctx.font = `${squareSize * fontMultiplier}px ${fontName || 'Courier'}`
+      ctx.textBaseline = 'middle'
+      ctx.textAlign = 'center'
+      ctx[`${textStyle}Text`](stringToPrint[i], 0, 0)
+      ctx.restore()
     }
   }
 }
