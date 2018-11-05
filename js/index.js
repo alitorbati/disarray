@@ -66,7 +66,7 @@ function renderCanvas (canvas, ctx, config) {
 
   const squaresAcross = stringToPrint.length
   const squareSize = ((canvasWidth / dpr) - (offset * 2)) / squaresAcross
-  const squaresDown = Math.floor((canvasHeight - (offset * 2))/ squareSize)
+  const squaresDown = Math.floor(((canvasHeight / dpr)- (offset * 2))/ squareSize)
 
   for(var i = 0; i < squaresAcross; i++) {
     for(var j = 0; j < squaresDown; j++) {
