@@ -1,23 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang='en' >
 <head>
-  <meta charset="UTF-8">
+  <meta charset='UTF-8'>
   <title>Cubic Disarray</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+  <link rel='stylesheet' href='css/style.css'>
+  <link href='https://fonts.googleapis.com/css?family=Space+Mono' rel='stylesheet'>
 </head>
 
 <body>
   <form class='form'>
-    <input name='stringToPrint' autofocus></input>
+    <label>
+        <em>stringToPrint</em>
+      <input type='text' name='stringToPrint' autofocus autocomplete='off' value='DISARRAY'>
+    </label>
     <br />
-    <select name='textStyle'>
-      <option value='stroke'>stroke</option>
-      <option value='fill'>fill</option>
-    </select>
+    <br />
+
+    <label>
+      <input type='checkbox' name='showBoxes'>showBoxes
+    </label>
+    <br />
+    <br />
+
+    <em>textStyle</em>
+    <br />
+    <label>
+      <input type='radio' name='textStyle' value='fill' checked>fill
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='textStyle' value='stroke'>stroke
+    </label>
+    <br />
+    <br />
+
+
+    <em>fontMultiplier</em>
+    <br />
+    <label>
+      <input type='radio' name='fontMultiplier' value='.25'>smol
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='fontMultiplier' value='.5'>avg
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='fontMultiplier' value='1' checked>big ol'
+    </label>
+    <br />
+    <br />
+
+
+    <em>fontName</em>
+    <br />
+    <label>
+      <input type='radio' name='fontName' value='Space Mono'>Space Mono
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='fontName' value='Helvetica' checked>Helvetica
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='fontName' value='Courier'>Courier
+    </label>
+    <br />
+    <br />
+
+    <em>displacement</em>
+    <br />
+    <label>
+      <input type='radio' name='displacement' value='1'>1
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='displacement' value='20' checked>20
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='displacement' value='150'>150
+    </label>
+    <br />
+    <br />
+
+    <em>rotation</em>
+    <br />
+    <label>
+      <input type='radio' name='rotation' value='1'>1
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='rotation' value='10' checked>10
+    </label>
+    <br />
+    <label>
+      <input type='radio' name='rotation' value='50'>50
+    </label>
+    <br />
+    <br />
+
+    <label>
+      <input type='checkbox' name='negative'>neg
+    </label>
+    <br />
+    <br />
+    <br />
+
+    <div>
+      fuckery by
+      <br />
+      <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
+      <br />
+      <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
+    </div>
   </form>
 
+
+
   <canvas></canvas>
-  <script  src="js/index.js"></script>
+  <script  src='js/index.js'></script>
 </body>
 </html>

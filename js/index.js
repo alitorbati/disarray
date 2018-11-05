@@ -1,33 +1,34 @@
 var form = document.forms[0]
+var config = {}
+var canvas = document.querySelector('canvas')
+var context = canvas.getContext('2d')
 
-var config = {
-  // stringToPrint: 'disarray',
-  stringToPrint: '',
-  showBoxes: false,
-  fontMultiplier: 1,
-  fontName: 'Space Mono',
-  textStyle: 'stroke', // or 'stroke' or 'fill'
+function setConfigValue (input) {
+  if (input.type === 'checkbox') { value = input.checked }
+  else if (input.type === 'text') { value = input.value }
+  else if (input.checked) { value = input.value }
+  config[input.name] = value
 }
 
-// doEverything(config);
+function initConfig () {
+  var inputs = form.querySelectorAll('input')
+  inputs.forEach(input => { setConfigValue(input) })
+  renderCanvas(canvas, context, config)
+}
 
-var input = form.querySelector('input[name="stringToPrint"]')
-input.addEventListener('keyup', (e) => {
-  config.stringToPrint = e.target.value,
-  doEverything(config);
+initConfig()
+
+var inputs = form.querySelectorAll('input')
+inputs.forEach(input => {
+  input.addEventListener('input', (e) => {
+    setConfigValue(e.target)
+    renderCanvas(canvas, context, config)
+  })
 })
 
-var select = form.querySelector('select[name="textStyle"]')
-select.addEventListener('change', (e) => {
-  console.log(e.target.value)
-  config.textStyle = e.target.value,
-  doEverything(config);
-})
-
-function doEverything (config) {
-  var canvas = document.querySelector('canvas');
-  var context = canvas.getContext('2d');
-  var dpr = window.devicePixelRatio;
+function renderCanvas (canvas, context, config) {
+  // var dpr = window.devicePixelRatio
+  var dpr = 1 // work on this
 
   const {
     stringToPrint,
@@ -35,54 +36,51 @@ function doEverything (config) {
     fontMultiplier,
     fontName,
     textStyle,
+    displacement,
+    rotation,
+    negative,
   } = config
 
-  const canvasWidth = 240 * dpr * 2;
-  const canvasHeight = 360 * dpr * 2;
-  const offset = canvasWidth / 20;
-  canvas.width = canvasWidth;
-  canvas.height = canvasHeight;
-  context.scale(dpr, dpr);
-
-  var randomDisplacement = 15;
-  var rotateMultiplier = 10;
+  const canvasWidth = 240 * dpr * 2
+  const canvasHeight = 360 * dpr * 2
+  const offset = canvasWidth / 20 // maintains ratio
+  canvas.width = canvasWidth
+  canvas.height = canvasHeight
+  negative ? canvas.classList.add('negative') : canvas.classList.remove('negative')
+  context.scale(dpr, dpr)
 
   var squaresAcross = stringToPrint.length
   var squaresDown = 5
-  var squareSize = (canvasWidth - offset * 2) / squaresAcross;
+  var squareSize = (canvasWidth - offset * 2) / squaresAcross
   var squaresDown = Math.floor((canvasHeight - (offset * 2))/ squareSize)
 
-  function draw (width, height, letter = '') {
-    context.beginPath();
-    context.rect(-width/2, -height/2, width, height);
-    showBoxes && context.stroke();
-    context.font = `${squareSize * fontMultiplier}px ${fontName || 'Courier'}`;
-    context.textBaseline = 'middle'
-    context.textAlign = 'center'
-    context[`${textStyle}Text`](letter, 0, 0);
-  }
-
-  let overall = 0
   for(var i = 0; i < squaresAcross; i++) {
     for(var j = 0; j < squaresDown; j++) {
-      var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-      var rotateAmt = j * Math.PI / 180 * plusOrMinus * Math.random() * rotateMultiplier;
+      var plusOrMinus = Math.random() < 0.5 ? -1 : 1
+      var rotateAmt = j * Math.PI / 180 * plusOrMinus * Math.random() * rotation
 
-      plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-      var horizontalPlacement = i * squareSize;
-      var verticalPlacement = j * squareSize;
-      var translateAmt = j / squareSize * plusOrMinus * Math.random() * randomDisplacement;
+      plusOrMinus = Math.random() < 0.5 ? -1 : 1
+      var horizontalPlacement = i * squareSize
+      var verticalPlacement = j * squareSize
+      var translateAmt = j / squareSize * plusOrMinus * Math.random() * displacement
 
-      context.save();
+      context.save()
       context.translate(
         horizontalPlacement + translateAmt + (squareSize / 2) + offset,
         verticalPlacement + (squareSize / 2) + offset
-      );
-      context.rotate(rotateAmt);
-      draw(squareSize, squareSize, stringToPrint[i].toUpperCase());
-      context.restore();
-      overall++
+      )
+      context.rotate(rotateAmt)
+      // draw
+      context.beginPath()
+      context.rect(-squareSize/2, -squareSize/2, squareSize, squareSize)
+      context.fillStyle = (negative ? 'white' : 'black')
+      context.strokeStyle = (negative ? 'white' : 'black')
+      showBoxes && context.stroke()
+      context.font = `${squareSize * fontMultiplier}px ${fontName || 'Courier'}`
+      context.textBaseline = 'middle'
+      context.textAlign = 'center'
+      context[`${textStyle}Text`](stringToPrint[i], 0, 0)
+      context.restore()
     }
   }
-
 }

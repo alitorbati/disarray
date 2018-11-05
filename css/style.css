@@ -5,6 +5,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  font-family: 'Space Mono';
 }
 
 canvas {
@@ -13,10 +14,22 @@ canvas {
   background-position: center center;
 }
 
+canvas.negative {
+  background-color: black;
+}
+
 .form {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 20px;
   position: fixed;
   top: 20px;
   left: 20px;
+  /* background: white; */
+  filter: blur(10px);
+  max-height: 100vh;
+  overflow: scroll;
+}
+
+.form:hover {
+  filter: blur(0);
 }
