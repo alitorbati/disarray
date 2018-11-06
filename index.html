@@ -9,107 +9,159 @@
 
 <body>
   <form class='form'>
-    <label>
-      <em>stringToPrint</em>
+    <section>
+      <label>
+        <em>stringToPrint</em>
+        <input
+          type='text'
+          name='stringToPrint'
+          autofocus
+          autocomplete='off'
+          value='DISARRAY'
+        >
+      </label>
+    </section>
+
+    <section>
+      <label>
+        <em>displacement</em>
+        <input
+          type='range'
+          name='displacement'
+          min='1'
+          max='10'
+          value='2'
+        >
+      </label>
+    </section>
+
+    <section>
+      <label>
+        <em>rotation</em>
+        <input
+          type='range'
+          name='rotation'
+          min='1'
+          max='20'
+          value='5'
+        >
+      </label>
+    </section>
+
+    <section>
+      <label>
+        <input
+          type='checkbox'
+          name='showBoxes'
+        >showBoxes
+      </label>
+    </section>
+
+    <section>
+      <label>
+        <input
+          type='checkbox'
+          name='negative'
+        >neg
+      </label>
+    </section>
+
+    <section>
+      <em>textStyle</em>
+      <label>
+        <input
+          type='radio'
+          name='textStyle'
+          value='fill'
+          checked
+        >fill
+      </label>
       <br />
-      <input type='text' name='stringToPrint' autofocus autocomplete='off' value='DISARRAY'>
-    </label>
-    <br />
-    <br />
+      <label>
+        <input
+          type='radio'
+          name='textStyle'
+          value='stroke'
+        >stroke
+      </label>
+    </section>
 
-    <label>
-      <input type='checkbox' name='showBoxes'>showBoxes
-    </label>
-    <br />
-    <br />
-
-    <em>textStyle</em>
-    <br />
-    <label>
-      <input type='radio' name='textStyle' value='fill' checked>fill
-    </label>
-    <br />
-    <label>
-      <input type='radio' name='textStyle' value='stroke'>stroke
-    </label>
-    <br />
-    <br />
-
-
-    <em>fontMultiplier</em>
-    <br />
-    <label>
-      <input type='radio' name='fontMultiplier' value='.25'>smol
-    </label>
-    <br />
-    <label>
-      <input type='radio' name='fontMultiplier' value='.5'>avg
-    </label>
-    <br />
-    <label>
-      <input type='radio' name='fontMultiplier' value='1' checked>big ol'
-    </label>
-    <br />
-    <br />
-
-
-    <em>fontName</em>
-    <br />
-    <label>
-      <input type='radio' name='fontName' value='Space Mono'>Space Mono
-    </label>
-    <br />
-    <label>
-      <input type='radio' name='fontName' value='Helvetica' checked>Helvetica
-    </label>
-    <br />
-    <label>
-      <input type='radio' name='fontName' value='Courier'>Courier
-    </label>
-    <br />
-    <br />
-
-    <em>displacement</em>
-    <br />
-    <label>
-      <input type='range' name='displacement' min='1' max='15' value='5'>
-    </label>
-    <br />
-    <br />
-
-    <em>rotation</em>
-    <br />
-    <label>
-      <input type='range' name='rotation' min='1' max='20' value='10'>
-    </label>
-    <br />
-    <br />
-
-    <label>
-      <input type='checkbox' name='negative'>neg
-    </label>
-    <br />
-    <br />
-
-    <button type='button' name='refuck'>refuck</button>
-    <br />
-    <a name='download-raster' href='#'>download raster</a>
-
-    <br />
-    <br />
-    <br />
-
-    <div>
-      fuckery by
+    <section>
+      <em>fontMultiplier</em>
+      <label>
+        <input
+          type='radio'
+          name='fontMultiplier'
+          value='.25'
+        >smol
+      </label>
       <br />
-      <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
+      <label>
+        <input
+          type='radio'
+          name='fontMultiplier'
+          value='.5'
+        >avg
+      </label>
       <br />
-      <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
-    </div>
+      <label>
+        <input
+          type='radio'
+          name='fontMultiplier'
+          value='1'
+          checked
+        >big ol'
+      </label>
+    </section>
+
+    <section>
+      <em>fontName</em>
+      <label>
+        <input
+          type='radio'
+          name='fontName'
+          value='Courier'
+          checked
+        >Courier
+      </label>
+      <br />
+      <label>
+        <input
+          type='radio'
+          name='fontName'
+          value='Space Mono'
+        >Space Mono
+      </label>
+      <br />
+      <label>
+        <input
+          type='radio'
+          name='fontName'
+          value='Helvetica'
+        >Helvetica
+      </label>
+    </section>
+
+    <section>
+      <button type='button' name='refuck'>refuck</button>
+      <br />
+      <a name='download-raster' href='#'>download raster</a>
+    </section>
+
+    <br />
+
+    <section>
+      <div>
+        fuckery by
+        <br />
+        <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
+        <br />
+        <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
+      </div>
+    </section>
   </form>
 
   <canvas></canvas>
-
   <script  src='js/index.js'></script>
 </body>
 </html>

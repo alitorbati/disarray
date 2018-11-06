@@ -1,46 +1,48 @@
+let config = {}
 const form = document.forms[0]
-const config = {}
 const canvas = document.querySelector('canvas')
-const ctx = canvas.getContext('2d')
+const context = canvas.getContext('2d')
+const dpr = window.devicePixelRatio || 1
 
-function setConfigValue (input) {
-  // make this functional
+function serializeForm (form) {
+  let config = {}
   formData = new FormData(form)
   const formDataItems = [...formData.entries()]
-  formDataItems.forEach(formDataItem => {
-    config[formDataItem[0]] = formDataItem[1]
-  })
+  for (var key of formData.keys()) {
+    config[key] = formData.get(key)
+  }
+  return config
 }
 
-function initConfig () {
-  const inputs = form.querySelectorAll('input')
-  inputs.forEach(input => { setConfigValue(input) })
-  document.querySelector('button[name="refuck"]').addEventListener('click', (_) => {
-    renderCanvas(canvas, ctx, config)
-  })
+(function initialize () {
+  config = serializeForm(form)
 
-  var downloadRaster = document.querySelector('a[name="download-raster"]')
-  downloadRaster.addEventListener('click', (_) => {
-    downloadRaster.href = canvas.toDataURL('image/png')
-    downloadRaster.download = 'disarray.png';
-  })
+  form
+    .querySelectorAll('input')
+    .forEach(input => {
+      input.addEventListener('input', (_) => {
+        config = serializeForm(form)
+        renderCanvas(canvas, context, config)
+      })
+    })
 
-  renderCanvas(canvas, ctx, config)
-}
+  document
+    .querySelector('button[name="refuck"]')
+    .addEventListener('click', (_) => {
+      renderCanvas(canvas, context, config)
+    })
 
-initConfig()
+  document
+    .querySelector('a[name="download-raster"]')
+    .addEventListener('click', (e) => {
+      e.currentTarget.download = 'disarray.png';
+      e.currentTarget.href = canvas.toDataURL('image/png')
+    })
 
-const inputs = form.querySelectorAll('input')
-inputs.forEach(input => {
-  input.addEventListener('input', (e) => {
-    setConfigValue(e.target)
-    renderCanvas(canvas, ctx, config)
-  })
-})
+  renderCanvas(canvas, context, config)
+})()
 
 function renderCanvas (canvas, ctx, config) {
-  var dpr = window.devicePixelRatio || 1
-
   const {
     stringToPrint,
     showBoxes,
@@ -68,7 +70,7 @@ function renderCanvas (canvas, ctx, config) {
 
   const squaresAcross = stringToPrint.length
   const squareSize = ((canvasWidth / dpr) - (offset * 2)) / squaresAcross
-  const squaresDown = Math.floor(((canvasHeight / dpr)- (offset * 2))/ squareSize)
+  const squaresDown = Math.floor(((canvasHeight / dpr) - (offset * 2)) / squareSize)
 
   for(var i = 0; i < squaresAcross; i++) {
     for(var j = 0; j < squaresDown; j++) {
@@ -93,7 +95,7 @@ function renderCanvas (canvas, ctx, config) {
       ctx.fillStyle = foregroundColor
       ctx.strokeStyle = foregroundColor
       showBoxes && ctx.stroke()
-      ctx.font = `${squareSize * fontMultiplier}px ${fontName || 'Courier'}`
+      ctx.font = `${squareSize * fontMultiplier}px ${fontName}`
       ctx.textBaseline = 'middle'
       ctx.textAlign = 'center'
       ctx[`${textStyle}Text`](stringToPrint[i], 0, 0)
