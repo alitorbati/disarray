@@ -20,10 +20,10 @@ function initialize () {
   const canvas = document.querySelector('canvas')
   const context = canvas.getContext('2d')
   const context2 = new window.C2S(canvasWidth, canvasHeight);
-  const dpr = window.devicePixelRatio || 1
+  //const dpr = window.devicePixelRatio || 1
 
   config = serializeForm(form)
-  renderCanvas(canvas, context, context2, config, dpr)
+  renderCanvas(canvas, context, context2, config)
 
   // eventListeners
   form
@@ -31,21 +31,21 @@ function initialize () {
     .forEach(input => {
       input.addEventListener('input', (_) => {
         config = serializeForm(form)
-        renderCanvas(canvas, context, context2, config, dpr)
+        renderCanvas(canvas, context, context2, config)
       })
     })
 
   document
     .querySelector('button[name="chaos"]')
     .addEventListener('click', (_) => {
-      renderCanvas(canvas, context, context2, config, dpr)
+      renderCanvas(canvas, context, context2, config)
     })
 
   document
     .querySelector('a[name="download-vector"]')
     .addEventListener('click', (e) => {
       e.currentTarget.download = 'disarray.svg';
-      // renderCanvas(canvas, context, config, dpr, true)
+      // renderCanvas(canvas, context, config, true)
       let source = context2.getSerializedSvg(true)
       source = '<?xml version="1.0" standalone="no"?>\r\n' + source
       const url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source)
@@ -61,7 +61,7 @@ function initialize () {
     })
 }
 
-function renderCanvas (canvas, ctx, ctx2, config, dpr, renderSvg) {
+function renderCanvas (canvas, ctx, ctx2, config, renderSvg) {
   const {
     displacement,
     fontMultiplier,
@@ -83,7 +83,7 @@ function renderCanvas (canvas, ctx, ctx2, config, dpr, renderSvg) {
   canvas.height = canvasHeight
 
   function preDraw(ctx) {
-    ctx.scale(dpr, dpr)
+    //ctx.scale(dpr, dpr)
     ctx.fillStyle = backgroundColor
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   }
@@ -92,8 +92,8 @@ function renderCanvas (canvas, ctx, ctx2, config, dpr, renderSvg) {
   preDraw(ctx2)
 
   const squaresAcross = stringToPrint.length
-  const squareSize = ((canvasWidth / dpr) - (offset * 2)) / squaresAcross
-  const squaresDown = Math.floor(((canvasHeight / dpr) - (offset * 2)) / squareSize)
+  const squareSize = (canvasWidth - (offset * 2)) / squaresAcross
+  const squaresDown = Math.floor((canvasHeight - (offset * 2)) / squareSize)
 
   for(var i = 0; i < squaresAcross; i++) {
     for(var j = 0; j < squaresDown; j++) {
