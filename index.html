@@ -11,63 +11,105 @@
   <form class='form'>
     <section>
       <label>
-        <em>stringToPrint</em>
+        <strong>write something</strong>
+        <br />
         <input
           type='text'
           name='stringToPrint'
           autofocus
           autocomplete='off'
-          value='DISARRAY'
+          value='ORDER AND CHAOS'
         >
       </label>
     </section>
 
     <section>
       <label>
-        <em>displacement</em>
+        <strong>displacement</strong>
+        <br />
         <input
           type='range'
           name='displacement'
-          min='1'
-          max='10'
+          min='0'
+          max='9'
+          value='1'
+        >
+      </label>
+      <br />
+      <label>
+        <strong>rotation</strong>
+          <br />
+        <input
+          type='range'
+          name='rotation'
+          min='0'
+          max='9'
           value='2'
         >
       </label>
     </section>
 
     <section>
-      <label>
-        <em>rotation</em>
-        <input
-          type='range'
-          name='rotation'
-          min='1'
-          max='20'
-          value='5'
-        >
-      </label>
-    </section>
-
-    <section>
+      <strong>font</strong>
+      <br />
       <label>
         <input
-          type='checkbox'
-          name='showBoxes'
-        >showBoxes
+          type='radio'
+          name='fontName'
+          value='Space Mono'
+          checked
+        >Space Mono
       </label>
-    </section>
-
-    <section>
+      <br />
       <label>
         <input
-          type='checkbox'
-          name='negative'
-        >neg
+          type='radio'
+          name='fontName'
+          value='Courier'
+        >Courier
       </label>
-    </section>
+      <br />
+      <label>
+        <input
+          type='radio'
+          name='fontName'
+          value='Helvetica'
+        >Helvetica
+      </label>
 
-    <section>
-      <em>textStyle</em>
+      <br />
+
+      <strong>size</strong>
+      <br />
+      <label>
+        <input
+          type='radio'
+          name='fontMultiplier'
+          value='.25'
+        >S
+      </label>
+      <br />
+      <label>
+        <input
+          type='radio'
+          name='fontMultiplier'
+          value='.5'
+        >M
+      </label>
+      <br />
+      <label>
+        <input
+          type='radio'
+          name='fontMultiplier'
+          value='1'
+          checked
+        >L
+      </label>
+
+      <br />
+
+      <strong>style</strong>
+      <br />
       <label>
         <input
           type='radio'
@@ -87,72 +129,34 @@
     </section>
 
     <section>
-      <em>fontMultiplier</em>
       <label>
         <input
-          type='radio'
-          name='fontMultiplier'
-          value='.25'
-        >smol
+          type='checkbox'
+          name='showBoxes'
+        >show boxes
       </label>
       <br />
       <label>
         <input
-          type='radio'
-          name='fontMultiplier'
-          value='.5'
-        >avg
-      </label>
-      <br />
-      <label>
-        <input
-          type='radio'
-          name='fontMultiplier'
-          value='1'
-          checked
-        >big ol'
+          type='checkbox'
+          name='negative'
+        >invert
       </label>
     </section>
 
     <section>
-      <em>fontName</em>
-      <label>
-        <input
-          type='radio'
-          name='fontName'
-          value='Courier'
-          checked
-        >Courier
-      </label>
-      <br />
-      <label>
-        <input
-          type='radio'
-          name='fontName'
-          value='Space Mono'
-        >Space Mono
-      </label>
-      <br />
-      <label>
-        <input
-          type='radio'
-          name='fontName'
-          value='Helvetica'
-        >Helvetica
-      </label>
+      <button type='button' name='refuck'>randomize</button>
     </section>
 
     <section>
-      <button type='button' name='refuck'>refuck</button>
-      <br />
-      <a name='download-raster' href='#'>download raster</a>
+      <a name='download-raster' href='#'>download png</a>
     </section>
 
     <br />
 
     <section>
       <div>
-        fuckery by
+        2018
         <br />
         <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
         <br />
@@ -163,5 +167,6 @@
 
   <canvas></canvas>
   <script  src='js/index.js'></script>
+  <script  src='js/canvas2svg.js'></script>
 </body>
 </html>
