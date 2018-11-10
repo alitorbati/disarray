@@ -1,8 +1,4 @@
-const canvasWidth = 480
-const canvasHeight = 720
-
 document.fonts.ready.then(initialize)
-
 
 function serializeForm (form) {
   let config = {}
@@ -17,10 +13,14 @@ function serializeForm (form) {
 function initialize () {
   let config = {}
   const form = document.forms[0]
+  const canvasWidth = 480
+  const canvasHeight = 720
   const canvas = document.querySelector('canvas')
   const context = canvas.getContext('2d')
   const context2 = new window.C2S(canvasWidth, canvasHeight);
   //const dpr = window.devicePixelRatio || 1
+  canvas.width = canvasWidth
+  canvas.height = canvasHeight
 
   config = serializeForm(form)
   renderCanvas(canvas, context, context2, config)
@@ -35,13 +35,13 @@ function initialize () {
       })
     })
 
-  document
+  form
     .querySelector('button[name="chaos"]')
     .addEventListener('click', (_) => {
       renderCanvas(canvas, context, context2, config)
     })
 
-  document
+  form
     .querySelector('a[name="download-vector"]')
     .addEventListener('click', (e) => {
       e.currentTarget.download = 'disarray.svg';
@@ -49,11 +49,11 @@ function initialize () {
       let source = context2.getSerializedSvg(true)
       source = '<?xml version="1.0" standalone="no"?>\r\n' + source
       const url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source)
-      // document.querySelector('a[name="download-vector"]').href = url;
+      // form.querySelector('a[name="download-vector"]').href = url;
       e.currentTarget.href = url
     })
 
-  document
+  form
     .querySelector('a[name="download-raster"]')
     .addEventListener('click', (e) => {
       e.currentTarget.download = 'disarray.png';
@@ -61,7 +61,7 @@ function initialize () {
     })
 }
 
-function renderCanvas (canvas, ctx, ctx2, config, renderSvg) {
+function renderCanvas (canvas, ctx, ctx2, config) {
   const {
     displacement,
     fontMultiplier,
@@ -74,26 +74,21 @@ function renderCanvas (canvas, ctx, ctx2, config, renderSvg) {
 
   let foregroundColor = negative ? 'white' : 'black'
   let backgroundColor = negative ? 'black' : 'white'
-  // const canvasWidth = 480
-  // const canvasHeight = 720
-  const offset = canvasWidth / 20 // maintains ratio
-
-
-  canvas.width = canvasWidth
-  canvas.height = canvasHeight
+  const offset = canvas.width / 20 // maintains ratio
 
   function preDraw(ctx) {
     //ctx.scale(dpr, dpr)
     ctx.fillStyle = backgroundColor
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    ctx.clearRect(0, 0, canvas.width, canvas.height) // clears everything away (unnecessary?)
+    ctx.fillRect(0, 0, canvas.width, canvas.height) // adds background color
   }
 
   preDraw(ctx)
   preDraw(ctx2)
 
   const squaresAcross = stringToPrint.length
-  const squareSize = (canvasWidth - (offset * 2)) / squaresAcross
-  const squaresDown = Math.floor((canvasHeight - (offset * 2)) / squareSize)
+  const squareSize = (canvas.width - (offset * 2)) / squaresAcross
+  const squaresDown = Math.floor((canvas.height - (offset * 2)) / squareSize)
 
   for(var i = 0; i < squaresAcross; i++) {
     for(var j = 0; j < squaresDown; j++) {
@@ -127,13 +122,6 @@ function renderCanvas (canvas, ctx, ctx2, config, renderSvg) {
 
       draw(ctx)
       draw(ctx2)
-
-      if (renderSvg) {
-        let source = ctx2.getSerializedSvg(true)
-        source = '<?xml version="1.0" standalone="no"?>\r\n' + source
-        const url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source)
-        document.querySelector('a[name="download-vector"]').href = url;
-      }
     }
   }
 }
