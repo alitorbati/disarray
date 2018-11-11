@@ -10,6 +10,18 @@ body {
   justify-content: center;
   position: relative;
   font-family: 'Space Mono';
+  font-size: 13px;
+  line-height: 17px;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-family: 'Space Mono';
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 36px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 canvas {
@@ -19,12 +31,15 @@ canvas {
 }
 
 .form {
-  padding: 20px;
+  padding-left: 20px;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   overflow: scroll;
+  -webkit-column-width: 280px; /* Chrome, Safari, Opera */
+  -moz-column-width: 280px; /* Firefox */
+  column-width: 280px;
 }
 
 section {

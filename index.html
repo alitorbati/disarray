@@ -10,46 +10,56 @@
 <body>
   <form class='form'>
     <section>
+    <h1>Order + <br>Indeterminacy</h1>
+      <p>
+        <a href='https://en.wikipedia.org/wiki/Indeterminacy_(music)' target='_blank'>Indeterminacy</a> is a composing approach in which some aspects of a work are left open to chance or to the interpreter’s free choice. <a href='https://en.wikipedia.org/wiki/John_Cage' target='_blank'>John Cage</a>, a pioneer of indeterminacy, defined it as “the ability of a piece to be performed in substantially different ways.”
+      </p>
+      <p>
+        For our series on indeterminacy, we invite you to create and share your own posters with this tool.
+      </p>
+  </section>
+  <br />
+    <section>
       <label>
-        <strong>write something</strong>
+        Text
         <br />
         <input
           type='text'
           name='stringToPrint'
           autofocus
           autocomplete='off'
-          value='ORDER AND CHAOS'
+          value='ORDER + INDETERMINACY'
         >
       </label>
     </section>
 
     <section>
       <label>
-        <strong>displacement</strong>
+        Displacement
         <br />
         <input
           type='range'
           name='displacement'
           min='0'
           max='8'
-          value='3'
+          value='1'
         >
       </label>
       <br />
       <label>
-        <strong>rotation</strong>
-          <br />
+        Rotation
+        <br />
         <input
           type='range'
           name='rotation'
           min='0'
           max='8'
-          value='2'
+          value='1'
         >
       </label>
       <br />
       <label>
-        <strong>size</strong>
+        Font size
         <br />
         <input
           type='range'
@@ -69,7 +79,7 @@
           name='textStyle'
           value='fill'
           checked
-        >fill
+        >Fill
       </label>
       <br />
       <label>
@@ -77,7 +87,7 @@
           type='radio'
           name='textStyle'
           value='stroke'
-        >stroke
+        >Stroke
       </label>
     </section>
 
@@ -86,40 +96,39 @@
         <input
           type='checkbox'
           name='showBoxes'
-        >show boxes
+        >Show boxes
       </label>
       <br />
       <label>
         <input
           type='checkbox'
           name='negative'
-        >invert
+        >Invert
       </label>
     </section>
 
     <section>
-      <button type='button' name='chaos'>chaos</button>
+      <button type='button' name='chaos'>Remix</button>
     </section>
 
     <section>
-      <a name='download-vector' href='#'>download svg</a>
+      <a name='download-vector' href='#'>Export SVG</a>
+      <br />
+      <a name='download-raster' href='#'>Export PNG</a>
     </section>
 
     <section>
-      <a name='download-raster' href='#'>download png</a>
+      <br />
+        <p>
+            Sponsored by<br>
+            <a href='http://dublab.com/home/' target='_blank'>dublab</a>
+            <br><br>
+            Code + concept by<br>
+            <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
+            + <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
+          </p>
     </section>
 
-    <br />
-
-    <section>
-      <div>
-        2018
-        <br />
-        <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
-        <br />
-        <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
-      </div>
-    </section>
   </form>
 
   <canvas></canvas>
