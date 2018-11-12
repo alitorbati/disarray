@@ -11,23 +11,28 @@ function serializeForm (form) {
 }
 
 function initialize () {
-  let config = {}
   const form = document.forms[0]
-  const canvasWidth = 480
-  const canvasHeight = 720
+  let config = serializeForm(form)
+  const [ canvasWidth, canvasHeight ] = config.ratio.split(':') // this shouldn't be duplicated
   const canvas = document.querySelector('canvas')
   const context = canvas.getContext('2d')
   const context2 = new window.C2S(canvasWidth, canvasHeight);
   //const dpr = window.devicePixelRatio || 1
-  canvas.width = canvasWidth
-  canvas.height = canvasHeight
 
-  config = serializeForm(form)
   renderCanvas(canvas, context, context2, config)
 
   // eventListeners
   form
     .querySelectorAll('input')
+    .forEach(input => {
+      input.addEventListener('input', (_) => {
+        config = serializeForm(form)
+        renderCanvas(canvas, context, context2, config)
+      })
+    })
+
+  form
+    .querySelectorAll('select')
     .forEach(input => {
       input.addEventListener('input', (_) => {
         config = serializeForm(form)
@@ -45,11 +50,9 @@ function initialize () {
     .querySelector('a[name="download-vector"]')
     .addEventListener('click', (e) => {
       e.currentTarget.download = 'disarray.svg';
-      // renderCanvas(canvas, context, config, true)
       let source = context2.getSerializedSvg(true)
       source = '<?xml version="1.0" standalone="no"?>\r\n' + source
       const url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source)
-      // form.querySelector('a[name="download-vector"]').href = url;
       e.currentTarget.href = url
     })
 
@@ -63,6 +66,7 @@ function initialize () {
 
 function renderCanvas (canvas, ctx, ctx2, config) {
   const {
+    ratio,
     displacement,
     fontMultiplier,
     negative,
@@ -71,7 +75,9 @@ function renderCanvas (canvas, ctx, ctx2, config) {
     stringToPrint,
     textStyle,
   } = config
-
+  const [ canvasWidth, canvasHeight ] = ratio.split(':')
+  canvas.width = canvasWidth
+  canvas.height = canvasHeight
   let foregroundColor = negative ? 'white' : 'black'
   let backgroundColor = negative ? 'black' : 'white'
   const offset = canvas.width / 20 // maintains ratio
@@ -79,7 +85,7 @@ function renderCanvas (canvas, ctx, ctx2, config) {
   function preDraw(ctx) {
     //ctx.scale(dpr, dpr)
     ctx.fillStyle = backgroundColor
-    ctx.clearRect(0, 0, canvas.width, canvas.height) // clears everything away (unnecessary?)
+    ctx.clearRect(0, 0, canvas.width, canvas.height) // clears everything away (useful for svg)
     ctx.fillRect(0, 0, canvas.width, canvas.height) // adds background color
   }
 

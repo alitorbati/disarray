@@ -4,24 +4,29 @@
 
 body {
   display: flex;
-  height: 100vh;
-  margin: 0;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  /* height: 100vh; */
+  margin: 20px;
+  align-items: start;
+  justify-content: space-between;
+  /* position: relative; */
   font-family: 'Space Mono';
-  font-size: 13px;
-  line-height: 17px;
+  font-size: 14px;
+  line-height: 1.2;
   text-rendering: optimizeLegibility;
 }
 
+.context {
+  max-width: 300px;
+  margin-right: 20px;
+}
+
 h1 {
-  font-family: 'Space Mono';
-  font-weight: normal;
+  /* font-family: 'Space Mono'; */
+  /* font-weight: normal; */
   font-size: 30px;
-  line-height: 36px;
-  padding-bottom: 0px;
+  /* line-height: 36px; */
   margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 canvas {
@@ -30,16 +35,14 @@ canvas {
   background-position: center center;
 }
 
-.form {
-  padding-left: 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  overflow: scroll;
-  -webkit-column-width: 280px; /* Chrome, Safari, Opera */
-  -moz-column-width: 280px; /* Firefox */
-  column-width: 280px;
+.config {
+  margin-left: 20px;
+  /* padding-left: 20px; */
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
+  /* height: 100vh; */
+  /* overflow: scroll; */
 }
 
 section {

@@ -1,140 +1,149 @@
 <!DOCTYPE html>
 <html lang='en' >
-<head>
-  <meta charset='UTF-8'>
-  <title>DISARRAY</title>
-  <link rel='stylesheet' href='css/style.css'>
-  <link href='https://fonts.googleapis.com/css?family=Space+Mono' rel='stylesheet'>
-</head>
-
-<body>
-  <form class='form'>
-    <section>
-    <h1>Order + <br>Indeterminacy</h1>
+  <head>
+    <meta charset='UTF-8'>
+    <title>DISARRAY</title>
+    <link rel='stylesheet' href='css/style.css'>
+    <link href='https://fonts.googleapis.com/css?family=Space+Mono' rel='stylesheet'>
+  </head>
+  <body>
+    <section class='context'>
+      <h1>Order + Indeterminacy</h1>
       <p>
-        <a href='https://en.wikipedia.org/wiki/Indeterminacy_(music)' target='_blank'>Indeterminacy</a> is a composing approach in which some aspects of a work are left open to chance or to the interpreter’s free choice. <a href='https://en.wikipedia.org/wiki/John_Cage' target='_blank'>John Cage</a>, a pioneer of indeterminacy, defined it as “the ability of a piece to be performed in substantially different ways.”
+        <a href='https://en.wikipedia.org/wiki/Indeterminacy_(music)' target='_blank'>Indeterminacy</a>
+        is a composing approach in which some aspects of a work are left open to chance or to the
+        interpreter’s free choice.
+        <a href='https://en.wikipedia.org/wiki/John_Cage' target='_blank'>John Cage</a>, a pioneer
+        of indeterminacy, defined it as “the ability of a piece to be performed in substantially
+        different ways.”
       </p>
       <p>
-        For our series on indeterminacy, we invite you to create and share your own posters with this tool.
+        For our series on indeterminacy, we invite you to create and share your own posters with
+        this tool.
       </p>
-  </section>
-  <br />
-    <section>
-      <label>
-        Text
+    </section>
+    <canvas></canvas>
+    <div class='config'>
+      <form class='form' onsubmit='return false;'>
+        <section>
+          <label>
+          Text
+          <br />
+          <input
+            type='text'
+            name='stringToPrint'
+            autofocus
+            autocomplete='off'
+            value='ORDER + INDETERMINACY'
+            >
+          </label>
+        </section>
+        <section>
+          <label>
+          Displacement
+          <br />
+          <input
+            type='range'
+            name='displacement'
+            min='0'
+            max='8'
+            value='1'
+            >
+          </label>
+          <br />
+          <label>
+          Rotation
+          <br />
+          <input
+            type='range'
+            name='rotation'
+            min='0'
+            max='8'
+            value='1'
+            >
+          </label>
+          <br />
+          <label>
+          Font size
+          <br />
+          <input
+            type='range'
+            name='fontMultiplier'
+            min='50'
+            max='450'
+            value='100'
+            step='50'
+            >
+          </label>
+        </section>
+        <section>
+          <label>
+          <input
+            type='radio'
+            name='textStyle'
+            value='fill'
+            checked
+            >Fill
+          </label>
+          <br />
+          <label>
+          <input
+            type='radio'
+            name='textStyle'
+            value='stroke'
+            >Stroke
+          </label>
+        </section>
+        <section>
+          <label>
+          <input
+            type='checkbox'
+            name='showBoxes'
+            >Show boxes
+          </label>
+          <br />
+          <label>
+          <input
+            type='checkbox'
+            name='negative'
+            >Invert
+          </label>
+        </section>
+        <section>
+          <label>
+            Ratio
+            <br />
+            <select name='ratio'>
+              <option value='480:720' selected>Poster</option>
+              <option value='500:500'>Square</option>
+              <option value='500:647'>Letter</option>
+            </select>
+          </label>
+        </section>
+        <section>
+          <button type='button' name='chaos'>Remix</button>
+        </section>
+      </form>
+      <section>
+        <a name='download-vector' href='#'>Export SVG</a>
         <br />
-        <input
-          type='text'
-          name='stringToPrint'
-          autofocus
-          autocomplete='off'
-          value='ORDER + INDETERMINACY'
-        >
-      </label>
-    </section>
-
-    <section>
-      <label>
-        Displacement
+        <a name='download-raster' href='#'>Export PNG</a>
+      </section>
+      <section>
         <br />
-        <input
-          type='range'
-          name='displacement'
-          min='0'
-          max='8'
-          value='1'
-        >
-      </label>
-      <br />
-      <label>
-        Rotation
-        <br />
-        <input
-          type='range'
-          name='rotation'
-          min='0'
-          max='8'
-          value='1'
-        >
-      </label>
-      <br />
-      <label>
-        Font size
-        <br />
-        <input
-          type='range'
-          name='fontMultiplier'
-          min='50'
-          max='450'
-          value='100'
-          step='50'
-        >
-      </label>
-    </section>
-
-    <section>
-      <label>
-        <input
-          type='radio'
-          name='textStyle'
-          value='fill'
-          checked
-        >Fill
-      </label>
-      <br />
-      <label>
-        <input
-          type='radio'
-          name='textStyle'
-          value='stroke'
-        >Stroke
-      </label>
-    </section>
-
-    <section>
-      <label>
-        <input
-          type='checkbox'
-          name='showBoxes'
-        >Show boxes
-      </label>
-      <br />
-      <label>
-        <input
-          type='checkbox'
-          name='negative'
-        >Invert
-      </label>
-    </section>
-
-    <section>
-      <button type='button' name='chaos'>Remix</button>
-    </section>
-
-    <section>
-      <a name='download-vector' href='#'>Export SVG</a>
-      <br />
-      <a name='download-raster' href='#'>Export PNG</a>
-    </section>
-
-    <section>
-      <br />
         <p>
-            Sponsored by<br>
-            <a href='http://dublab.com/home/' target='_blank'>dublab</a>
-            <br><br>
-            Code + concept by<br>
-            <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
-            + <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
-          </p>
-    </section>
-
-  </form>
-
-  <canvas></canvas>
-  <!-- <div id='svg'></div> -->
-
-  <script  src='js/canvas2svg.js'></script>
-  <script  src='js/index.js'></script>
-</body>
+          Code + concept by<br>
+          <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
+          + <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
+          <br />
+          <br />
+          Sponsored by
+          <br>
+          <a href='http://dublab.com/home/' target='_blank'>dublab</a>
+        </p>
+      </section>
+    </div>
+    <script  src='js/canvas2svg.js'></script>
+    <script  src='js/index.js'></script>
+  </body>
 </html>
