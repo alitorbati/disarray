@@ -4,9 +4,14 @@ function serializeForm (form) {
   let config = {}
   formData = new FormData(form)
   const formDataItems = [...formData.entries()]
+  // debugger
   for (var key of formData.keys()) {
     config[key] = formData.get(key)
   }
+  console.log(config)
+  // console.log(
+  //   Object.keys(config).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(config[k])}`).join('&')
+  // )
   return config
 }
 
@@ -46,7 +51,7 @@ function initialize () {
       renderCanvas(canvas, context, context2, config)
     })
 
-  form
+  document
     .querySelector('a[name="download-vector"]')
     .addEventListener('click', (e) => {
       e.currentTarget.download = 'disarray.svg';
@@ -56,7 +61,7 @@ function initialize () {
       e.currentTarget.href = url
     })
 
-  form
+  document
     .querySelector('a[name="download-raster"]')
     .addEventListener('click', (e) => {
       e.currentTarget.download = 'disarray.png';
