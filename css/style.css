@@ -31,7 +31,7 @@ h1 {
 }
 
 canvas {
-  border: 0.5px solid #666;
+  border: 1px solid #666;
   background-size: cover;
   background-position: center center;
 }
