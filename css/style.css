@@ -13,6 +13,8 @@ body {
   font-size: 12px;
   line-height: 1.2;
   text-rendering: optimizeLegibility;
+  background: black;
+  color: white;
 }
 
 .context {
@@ -31,7 +33,7 @@ h1 {
 }
 
 canvas {
-  border: 1px solid #666;
+  border: 2px solid greenyellow;
   background-size: cover;
   background-position: center center;
 }
@@ -49,3 +51,19 @@ canvas {
 section {
   margin-bottom: 15px;
 }
+
+ a:link {
+  color: greenyellow;
+}
+
+a:visited {
+  color: greenyellow;
+}
+
+a:hover {
+  color: greenyellow;
+}
+
+a:active {
+  color: greenyellow;
+} 
