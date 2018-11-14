@@ -10,27 +10,28 @@ body {
   justify-content: space-between;
   /* position: relative; */
   font-family: 'Space Mono';
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.2;
   text-rendering: optimizeLegibility;
 }
 
 .context {
-  max-width: 300px;
+  max-width: 260px;
   margin-right: 20px;
 }
 
 h1 {
   /* font-family: 'Space Mono'; */
-  /* font-weight: normal; */
+  font-weight: normal;
   font-size: 30px;
-  /* line-height: 36px; */
+  /* line-height: 0px; */
   margin-bottom: 0px;
+  margin-top: 0px;
   padding-bottom: 0px;
 }
 
 canvas {
-  border: 1px solid black;
+  border: 0.5px solid #666;
   background-size: cover;
   background-position: center center;
 }

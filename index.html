@@ -2,13 +2,13 @@
 <html lang='en' >
   <head>
     <meta charset='UTF-8'>
-    <title>DISARRAY</title>
+    <title>INDETERMINACY</title>
     <link rel='stylesheet' href='css/style.css'>
     <link href='https://fonts.googleapis.com/css?family=Space+Mono' rel='stylesheet'>
   </head>
   <body>
     <section class='context'>
-      <h1>Order + Indeterminacy</h1>
+      <h1>INDETERMINACY</h1>
       <p>
         <a href='https://en.wikipedia.org/wiki/Indeterminacy_(music)' target='_blank'>Indeterminacy</a>
         is a composing approach in which some aspects of a work are left open to chance or to the
@@ -21,7 +21,18 @@
         For our series on indeterminacy, we invite you to create and share your own posters with
         this tool.
       </p>
-    </section>
+        <br />
+        <p>
+            Sponsored by
+            <br>
+            <a href='http://dublab.com/home/' target='_blank'>dublab</a>
+            <br><br>
+          Code + concept by<br>
+          <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
+          + <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
+          <br><br>
+        </p>
+      </section>
     <canvas></canvas>
     <div class='config'>
       <form class='form' onsubmit='return false;'>
@@ -34,7 +45,7 @@
             name='stringToPrint'
             autofocus
             autocomplete='off'
-            value='ORDER + INDETERMINACY'
+            value='ORDER AND CHAOS'
             >
           </label>
         </section>
@@ -45,9 +56,10 @@
           <input
             type='range'
             name='displacement'
+            id='displacementInput'
             min='0'
             max='8'
-            value='1'
+            value=''
             >
           </label>
           <br />
@@ -57,9 +69,10 @@
           <input
             type='range'
             name='rotation'
+            id='rotationInput'
             min='0'
             max='8'
-            value='1'
+            value=''
             >
           </label>
           <br />
@@ -69,6 +82,7 @@
           <input
             type='range'
             name='fontMultiplier'
+            id='fontMultiplierInput'
             min='50'
             max='450'
             value='100'
@@ -114,9 +128,9 @@
             Ratio
             <br />
             <select name='ratio'>
-              <option value='480:720' selected>Poster</option>
+              <option value='500:647' selected>Letter</option>
+              <option value='480:720'>Poster</option>
               <option value='500:500'>Square</option>
-              <option value='500:647'>Letter</option>
             </select>
           </label>
         </section>
@@ -126,24 +140,26 @@
       </form>
       <section>
         <a name='download-vector' href='#'>Export SVG</a>
-        <br />
+        <br /><br />
         <a name='download-raster' href='#'>Export PNG</a>
-      </section>
-      <section>
-        <br />
-        <p>
-          Code + concept by<br>
-          <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
-          + <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
-          <br />
-          <br />
-          Sponsored by
-          <br>
-          <a href='http://dublab.com/home/' target='_blank'>dublab</a>
-        </p>
       </section>
     </div>
     <script  src='js/canvas2svg.js'></script>
     <script  src='js/index.js'></script>
+    <script>
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      
+      var randomDisplacement = getRandomInt(0, 8);
+      var randomRotation = getRandomInt(0, 8);
+      var randomFontMultiplier = (getRandomInt(0, 8) * 50) + 50;
+      
+      document.getElementById('displacementInput').value = randomDisplacement;
+      document.getElementById('rotationInput').value = randomRotation;
+      document.getElementById('fontMultiplierInput').value = randomFontMultiplier;
+    </script>
   </body>
 </html>
