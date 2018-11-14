@@ -33,7 +33,7 @@ h1 {
 }
 
 canvas {
-  border: 2px solid greenyellow;
+  border: 2px solid #5ED529;
   background-size: cover;
   background-position: center center;
 }
@@ -53,17 +53,17 @@ section {
 }
 
  a:link {
-  color: greenyellow;
+  color: #5ED529;
 }
 
 a:visited {
-  color: greenyellow;
+  color: #5ED529;
 }
 
 a:hover {
-  color: greenyellow;
+  color: #5ED529;
 }
 
 a:active {
-  color: greenyellow;
+  color: #5ED529;
 } 
