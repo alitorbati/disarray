@@ -165,6 +165,12 @@
             'cancelable': true
         });
 
+        const textInput = document.querySelectorAll('input[name="stringToPrint"]')[0]
+        let strings = ['ORDER', 'CHAOS', 'DISARRAY', 'INDETERMINACY']
+        pickedStringIndex = getRandomInt(0, strings.length - 1)
+        textInput.value = strings[pickedStringIndex]
+        textInput.dispatchEvent(inputEvent)
+
         const displacementInput = document.getElementById('displacementInput')
         displacementInput.value = getRandomInt(0, 8)
         displacementInput.dispatchEvent(inputEvent)
