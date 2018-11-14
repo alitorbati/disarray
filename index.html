@@ -140,6 +140,9 @@
         <section>
           <button type='button' name='chaos'>Remix</button>
         </section>
+        <section>
+          <button type='button' name='randomize' onClick='randomizeForm()'>Randomize</button>
+        </section>
       </form>
       <section>
         <a name='download-vector' href='#'>Export SVG</a>
@@ -155,14 +158,27 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
-      
-      var randomDisplacement = getRandomInt(0, 8);
-      var randomRotation = getRandomInt(0, 8);
-      var randomFontMultiplier = (getRandomInt(0, 8) * 50) + 50;
-      
-      document.getElementById('displacementInput').value = randomDisplacement;
-      document.getElementById('rotationInput').value = randomRotation;
-      document.getElementById('fontMultiplierInput').value = randomFontMultiplier;
+
+      function randomizeForm() {
+        var inputEvent = new Event('input', {
+            'bubbles': true,
+            'cancelable': true
+        });
+
+        const displacementInput = document.getElementById('displacementInput')
+        displacementInput.value = getRandomInt(0, 8)
+        displacementInput.dispatchEvent(inputEvent)
+
+        const rotationInput = document.getElementById('rotationInput')
+        rotationInput.value = getRandomInt(0, 8)
+        rotationInput.dispatchEvent(inputEvent)
+
+        const fontMultiplierInput = document.getElementById('fontMultiplierInput')
+        fontMultiplierInput.value = (getRandomInt(0, 8) * 50) + 50;
+        fontMultiplierInput.dispatchEvent(inputEvent)
+      }
+
+      randomizeForm()
     </script>
   </body>
 </html>
