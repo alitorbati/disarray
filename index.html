@@ -169,6 +169,11 @@
         displacementInput.value = getRandomInt(0, 8)
         displacementInput.dispatchEvent(inputEvent)
 
+        const textStyleInputs = document.querySelectorAll('input[name="textStyle"]')
+        pickedStyleIndex = getRandomInt(0, 1)
+        textStyleInputs[pickedStyleIndex].checked = true
+        textStyleInputs[pickedStyleIndex].dispatchEvent(inputEvent)
+
         const rotationInput = document.getElementById('rotationInput')
         rotationInput.value = getRandomInt(0, 8)
         rotationInput.dispatchEvent(inputEvent)
