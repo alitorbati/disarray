@@ -25,7 +25,7 @@
       </p>
       <br>
       <p>
-      Sponsored by <a href='http://dublab.com/home/' target='_blank'>
+      PRESENTED BY <a href='http://dublab.com/home/' target='_blank'>
         <br><br>
         <a href='http://dublab.com/home/' target='_blank'><img src="img/logo_horizontal_white.svg"></a>
       </p>
@@ -51,11 +51,21 @@
             value='ORDER AND CHAOS'
             >
           </label>
+          <br><br>
+          <button type='button' name='randomize' onClick='randomizeForm()'>Randomize</button>
+          <br><br>
+          <a name='download-vector' href='#'>Export SVG</a>
+          <br><br>
+          <a name='download-raster' href='#'>Export PNG</a>
+          <br><br>
+          <button onclick="showAdvanced()">Advanced</button>
         </section>
-        <section>
+
+
+        <section id='advancedControls' style='display:none'>
           <label>
           Displacement
-          <br />
+          <br>
           <input
             type='range'
             name='displacement'
@@ -65,10 +75,10 @@
             value=''
             >
           </label>
-          <br />
+          <br>
           <label>
           Rotation
-          <br />
+          <br>
           <input
             type='range'
             name='rotation'
@@ -78,10 +88,10 @@
             value=''
             >
           </label>
-          <br />
+          <br>
           <label>
           Font Size
-          <br />
+          <br>
           <input
             type='range'
             name='fontMultiplier'
@@ -92,8 +102,7 @@
             step='50'
             >
           </label>
-        </section>
-        <section>
+          <br><br>
           <label>
           <input
             type='radio'
@@ -102,7 +111,7 @@
             checked
             >Fill
           </label>
-          <br />
+          <br>
           <label>
           <input
             type='radio'
@@ -110,23 +119,21 @@
             value='stroke'
             >Stroke
           </label>
-        </section>
-        <section>
+          <br><br>
           <label>
           <input
             type='checkbox'
             name='showBoxes'
             >Show Boxes
           </label>
-          <br />
+          <br>
           <label>
           <input
             type='checkbox'
             name='negative'
             >Invert
           </label>
-        </section>
-        <section>
+          <br><br>
           <label>
             Ratio
             <br />
@@ -136,23 +143,26 @@
               <option value='500:500'>Square</option>
             </select>
           </label>
-        </section>
-        <section>
-          <button type='button' name='chaos'>Remix</button>
-        </section>
-        <section>
-          <button type='button' name='randomize' onClick='randomizeForm()'>Randomize</button>
+        <!--THIS IS NOW REDUNDANT
+        <br><br>
+        <button type='button' name='chaos'>Remix</button>
+        -->
         </section>
       </form>
-      <section>
-        <a name='download-vector' href='#'>Export SVG</a>
-        <br /><br />
-        <a name='download-raster' href='#'>Export PNG</a>
-      </section>
     </div>
     <script  src='js/canvas2svg.js'></script>
     <script  src='js/index.js'></script>
     <script>
+
+      function showAdvanced() {
+        var x = document.getElementById("advancedControls");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+      } 
+
       function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
