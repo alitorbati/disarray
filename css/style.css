@@ -17,6 +17,11 @@ body {
   color: black;
 }
 
+input[type=text] {
+  font-family: 'Space Mono';
+  font-size: 20px;
+}
+
 .context {
   max-width: 250px;
   margin-right: 20px;
@@ -30,6 +35,12 @@ h1 {
   margin-bottom: 0px;
   margin-top: 0px;
   padding-bottom: 0px;
+}
+
+h2 {
+  /* font-family: 'Space Mono'; */
+  font-weight: normal;
+  font-size: 20px;
 }
 
 canvas {

@@ -67,6 +67,14 @@ function initialize () {
       e.currentTarget.download = 'disarray.png';
       e.currentTarget.href = canvas.toDataURL('image/png')
     })
+
+  document
+    .querySelector('a[name="print-canvas"]')
+    .addEventListener('click', (_) => {
+      var win = window.open();
+      win.document.write("<br><img src='" + canvas.toDataURL() + "'/>");
+      win.print();
+    })
 }
 
 function renderCanvas (canvas, ctx, ctx2, config) {

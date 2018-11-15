@@ -24,7 +24,121 @@
       For our series on indeterminacy, we invite you to create and share your own posters using this tool.
       </p>
       <br>
+
+      <form class='form' onsubmit='return false;'>
+          <section>
+            <input
+              type='text'
+              name='stringToPrint'
+              autofocus
+              autocomplete='off'
+              value='ORDER AND CHAOS'
+              >
+            <br>
+            <h2>
+              <p><a name='print-canvas' href='#' onClick='randomizeForm()'>Randomize</a></p>
+              <p><a name='print-canvas' href='#'>Print</a></p>
+            </h2>
+            <p>
+            <button onclick="showAdvanced()">Advanced</button>
+            </p>
+          </section>
+          <section id='advancedControls' style='display:none'>
+            <label>
+            Displacement
+            <br>
+            <input
+              type='range'
+              name='displacement'
+              id='displacementInput'
+              min='0'
+              max='8'
+              value=''
+              >
+            </label>
+            <br>
+            <label>
+            Rotation
+            <br>
+            <input
+              type='range'
+              name='rotation'
+              id='rotationInput'
+              min='0'
+              max='8'
+              value=''
+              >
+            </label>
+            <br>
+            <label>
+            Font Size
+            <br>
+            <input
+              type='range'
+              name='fontMultiplier'
+              id='fontMultiplierInput'
+              min='50'
+              max='450'
+              value='100'
+              step='50'
+              >
+            </label>
+            <br><br>
+            <label>
+            <input
+              type='radio'
+              name='textStyle'
+              value='fill'
+              checked
+              >Fill
+            </label>
+            <br>
+            <label>
+            <input
+              type='radio'
+              name='textStyle'
+              value='stroke'
+              >Stroke
+            </label>
+            <br><br>
+            <label>
+            <input
+              type='checkbox'
+              name='showBoxes'
+              >Show Boxes
+            </label>
+            <br>
+            <label>
+            <input
+              type='checkbox'
+              name='negative'
+              >Invert
+            </label>
+            <br><br>
+            <label>
+              Ratio
+              <br />
+              <select name='ratio'>
+                <option value='500:647' selected>Letter</option>
+                <option value='480:720'>Poster</option>
+                <option value='500:500'>Square</option>
+              </select>
+            </label>
+            
+          <!--THIS IS NOW REDUNDANT
+          <br><br>
+          <button type='button' name='chaos'>Remix</button>
+          -->
+  
+          <br><br>
+            <a name='download-vector' href='#'>Export SVG</a>
+            <br>
+            <a name='download-raster' href='#'>Export PNG</a>
+          </section>
+        </form>
+
       <p>
+        <br>
       PRESENTED BY <a href='http://dublab.com/home/' target='_blank'>
         <br><br>
         <a href='http://dublab.com/home/' target='_blank'><img src="img/logo_horizontal_black.svg"></a>
@@ -34,120 +148,11 @@
       <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
       + <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
       </p>
-      </section>
+
+    </section>
+
     <canvas></canvas>
     <div class='config'>
-      <form class='form' onsubmit='return false;'>
-        <section>
-          <label>
-          Text
-          <br />
-          <input
-            type='text'
-            name='stringToPrint'
-            autofocus
-            autocomplete='off'
-            value='ORDER AND CHAOS'
-            >
-          </label>
-          <br><br>
-          <button type='button' name='randomize' onClick='randomizeForm()'>Randomize</button>
-          <br><br>
-          <a name='download-vector' href='#'>Export SVG</a>
-          <br><br>
-          <a name='download-raster' href='#'>Export PNG</a>
-          <br><br>
-          <button onclick="showAdvanced()">Advanced</button>
-        </section>
-
-
-        <section id='advancedControls' style='display:none'>
-          <label>
-          Displacement
-          <br>
-          <input
-            type='range'
-            name='displacement'
-            id='displacementInput'
-            min='0'
-            max='8'
-            value=''
-            >
-          </label>
-          <br>
-          <label>
-          Rotation
-          <br>
-          <input
-            type='range'
-            name='rotation'
-            id='rotationInput'
-            min='0'
-            max='8'
-            value=''
-            >
-          </label>
-          <br>
-          <label>
-          Font Size
-          <br>
-          <input
-            type='range'
-            name='fontMultiplier'
-            id='fontMultiplierInput'
-            min='50'
-            max='450'
-            value='100'
-            step='50'
-            >
-          </label>
-          <br><br>
-          <label>
-          <input
-            type='radio'
-            name='textStyle'
-            value='fill'
-            checked
-            >Fill
-          </label>
-          <br>
-          <label>
-          <input
-            type='radio'
-            name='textStyle'
-            value='stroke'
-            >Stroke
-          </label>
-          <br><br>
-          <label>
-          <input
-            type='checkbox'
-            name='showBoxes'
-            >Show Boxes
-          </label>
-          <br>
-          <label>
-          <input
-            type='checkbox'
-            name='negative'
-            >Invert
-          </label>
-          <br><br>
-          <label>
-            Ratio
-            <br />
-            <select name='ratio'>
-              <option value='500:647' selected>Letter</option>
-              <option value='480:720'>Poster</option>
-              <option value='500:500'>Square</option>
-            </select>
-          </label>
-        <!--THIS IS NOW REDUNDANT
-        <br><br>
-        <button type='button' name='chaos'>Remix</button>
-        -->
-        </section>
-      </form>
     </div>
     <script  src='js/canvas2svg.js'></script>
     <script  src='js/index.js'></script>
