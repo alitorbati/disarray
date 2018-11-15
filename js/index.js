@@ -70,10 +70,12 @@ function initialize () {
 
   document
     .querySelector('a[name="print-canvas"]')
-    .addEventListener('click', (_) => {
-      var win = window.open();
-      win.document.write("<br><img src='" + canvas.toDataURL() + "'/>");
+    .addEventListener('click', (e) => {
+      console.log('hi');
+      var win=window.open();
+      win.document.write("<br><img src='"+canvas.toDataURL()+"'/>");
       win.print();
+      win.location.reload();
     })
 }
 
