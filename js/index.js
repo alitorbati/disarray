@@ -72,7 +72,7 @@ function initialize () {
     .querySelector('a[name="print-canvas"]')
     .addEventListener('click', (e) => {
       console.log('hi');
-      var win=window.open();
+      var win=window.open('', '', 'width=' + canvasWidth + ',height=' + canvasHeight);
       win.document.write("<br><img src='"+canvas.toDataURL()+"'/>");
       win.print();
       win.location.reload();
