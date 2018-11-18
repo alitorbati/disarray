@@ -5,11 +5,11 @@
     <title>INDETERMINACY</title>
     <link rel='stylesheet' href='css/style.css'>
     <link href='https://fonts.googleapis.com/css?family=Space+Mono' rel='stylesheet'>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,900|Space+Mono" rel="stylesheet"> -->
   </head>
   <body>
-    <section class='context'>
+    <section class='description'>
       <h1>INDETERMINACY</h1>
-      <br>
       <p>
         <a href='https://en.wikipedia.org/wiki/Indeterminacy_(music)' target='_blank'>Indeterminacy</a>
         is a composing approach in which some aspects of a work are left open to chance or to the
@@ -21,50 +21,40 @@
         different ways.”
       </p>
       <p>
-      For our series on indeterminacy, we invite you to create and share your own posters using this tool.
+      We invite you to create and share your own posters using this tool.
       </p>
-      <br>
       <p>
-        PRESENTED BY <a href='http://dublab.com/home/' target='_blank'>
-          <br><br>
-          <a href='http://dublab.com/home/' target='_blank'><img src="img/logo_horizontal_black.svg"></a>
-        </p>
-        <p>
-        CODE + CONCEPT BY<br>
+        <b>CODE + CONCEPT BY</b>
+        <br>
         <a href='https://github.com/alitorbati' target='_blank'>@alitorbati</a>
         + <a href='https://github.com/zekewattles' target='_blank'>@zekewattles</a>
-        </p>
-      </section>
+      </p>
+      <button onClick='toggleTheme()'>Theme</button>
+    </section>
+
     <canvas></canvas>
+
     <div class='config'>
       <form class='form' onsubmit='return false;'>
         <section>
           <input
             type='text'
-            name='stringToPrint'
+            name='text'
             autofocus
             autocomplete='off'
             value='ORDER AND CHAOS'
-            >
-            <br>
-            <h2>
-                <p><a href='#' onClick='randomizeForm()'>Randomize</a></p>
-                <p><a name='print-canvas' href='#'>Print</a></p>
-            </h2>
-            <p>
-                <button onclick="showAdvanced()">Advanced</button>
-            </p>
+          >
         </section>
-        <section id='advancedControls' style='display:none'>
+        <section>
           <label>
           Displacement
           <br />
           <input
             type='range'
             name='displacement'
-            id='displacementInput'
             min='0'
             max='8'
+            step='1'
             value=''
             >
           </label>
@@ -75,9 +65,9 @@
           <input
             type='range'
             name='rotation'
-            id='rotationInput'
             min='0'
             max='8'
+            step='1'
             value=''
             >
           </label>
@@ -87,12 +77,11 @@
           <br />
           <input
             type='range'
-            name='fontMultiplier'
-            id='fontMultiplierInput'
+            name='fontSize'
             min='50'
             max='450'
-            value='100'
             step='50'
+            value='100'
             >
           </label>
           <br><br>
@@ -124,80 +113,30 @@
           <input
             type='checkbox'
             name='negative'
-            >Invert
+            >Negative
           </label>
         <br><br>
           <label>
             Ratio
             <br />
             <select name='ratio'>
-              <option value='612:792' selected>Letter</option>
+              <option value='500:500' selected>Square</option>
+              <option value='612:792'>Letter</option>
               <option value='480:720'>Poster</option>
-              <option value='500:500'>Square</option>
             </select>
           </label>
           <br><br>
-          <button type='button' name='chaos'>Remix</button>
-          <br><br>
+          <button type='button' name='remix' onClick='remixForm()'>Remix</button>
           <button type='button' name='randomize' onClick='randomizeForm()'>Randomize</button>
+          <!-- <a name='print-canvas' href='#'>Print</a> -->
         </section>
       </form>
       <section>
         <a name='download-vector' href='#'>Export SVG</a>
-        <br /><br />
         <a name='download-raster' href='#'>Export PNG</a>
       </section>
     </div>
-    <script  src='js/canvas2svg.js'></script>
-    <script  src='js/index.js'></script>
-    <script>
-
-      function showAdvanced() {
-        var x = document.getElementById("advancedControls");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-      } 
-
-      function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
-
-      function randomizeForm() {
-        var inputEvent = new Event('input', {
-            'bubbles': true,
-            'cancelable': true
-        });
-
-        const textInput = document.querySelectorAll('input[name="stringToPrint"]')[0]
-        let strings = ['ORDER', 'CHAOS', 'DISARRAY', 'INDETERMINACY']
-        pickedStringIndex = getRandomInt(0, strings.length - 1)
-        textInput.value = strings[pickedStringIndex]
-        textInput.dispatchEvent(inputEvent)
-
-        const displacementInput = document.getElementById('displacementInput')
-        displacementInput.value = getRandomInt(0, 8)
-        displacementInput.dispatchEvent(inputEvent)
-
-        const textStyleInputs = document.querySelectorAll('input[name="textStyle"]')
-        pickedStyleIndex = getRandomInt(0, 1)
-        textStyleInputs[pickedStyleIndex].checked = true
-        textStyleInputs[pickedStyleIndex].dispatchEvent(inputEvent)
-
-        const rotationInput = document.getElementById('rotationInput')
-        rotationInput.value = getRandomInt(0, 8)
-        rotationInput.dispatchEvent(inputEvent)
-
-        const fontMultiplierInput = document.getElementById('fontMultiplierInput')
-        fontMultiplierInput.value = (getRandomInt(0, 8) * 50) + 50;
-        fontMultiplierInput.dispatchEvent(inputEvent)
-      }
-
-      randomizeForm()
-    </script>
+    <script src='js/canvas2svg.js'></script>
+    <script src='js/index.js'></script>
   </body>
 </html>
